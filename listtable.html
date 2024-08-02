@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        /* ស្តាយសម្រាប់ទំព័រទាំងមូល */
+        body {
+            font-family: Arial, sans-serif; /* អត្ថបទសម្រាប់ទំព័រ */
+            display: flex; /* បង្ហាញមាតិកាកណ្តាល */
+            justify-content: center; /* កណ្តាលផ្នែកជ horizontally */
+            align-items: center; /* កណ្តាលផ្នែក vertical */
+            height: 100vh; /* កម្ពស់ទំព័រ */
+            margin: 0; /* លុបចោលគន្លងជុំវិញ */
+            background-color: #e0f7fa; /* ពណ៌ផ្ទៃក្រោយល្ហ្វីស៊ីស៊ីន */
+        }
+
+        /* ស្តាយសម្រាប់តារាង */
+        table {
+            width: 60%;
+            border-collapse: collapse; /* ការបន្សល់របស់ស៊ីដុម */
+            margin: 20px 0; /* មាតិកាក្នុងតារាង */
+            font-size: 18px; /* ទំហំអត្ថបទក្នុងតារាង */
+            text-align: left; /* ការរៀបចំអត្ថបទនៅខាងឆ្វេង */
+            background-color: #ffffff; /* ពណ៌ផ្ទៃក្រោយសម្រាប់តារាង */
+            border-radius: 18px; /* ជ្រុងមុំរាងជ្រុង */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ស្រមោលសម្រាប់ការបន្ថែមជាតិ */
+            transition: transform 0.3s; /* ការប្រែប្រួលរបស់ការបំលែង */
+        
+            
+        
+        }
+
+        /* ស្តាយសម្រាប់ក្បាលនិងជួរ */
+        th, td {
+            padding: 10px; /* ការដាក់បន្ថែមចន្លោះក្នុង */
+            border-bottom: 1px solid #ddd; /* ស៊ីដុមខៀវសម្រាប់ជួរ */
+            border-radius: 50px;
+          
+      
+          
+        }
+
+        th {
+            background-color: #00796b; /* ពណ៌ផ្ទៃក្រោយខ្មៅសម្រាប់ក្បាល */
+            color: #ffffff; /* ពណ៌អត្ថបទសម្រាប់ក្បាល */
+        }
+
+        tr {
+            transition: background-color 0.3s, transform 0.3s; /* ការប្រែប្រួលពណ៌និងការបំលែង */
+        }
+
+        tr:hover {
+            background-color: #e5ffc8; /* ពណ៌ផ្ទៃក្រោយក្នុងពេលកំពុងលើកបង្ហាញ */
+            transform: scale(1.02); /* បង្ហាញនូវការធ្វើអត្ថបទធ្វើការផ្លាស់ប្តូរ */
+        }
+
+        /* ការបន្ថែមប្រភេទអានីម៉ាស៊ីនសម្រាប់ជួរ */
+        tr:nth-child(even) {
+            animation: fadeIn 0.5s ease-in-out; /* ប្រើអានីម៉ាស៊ីនដើម្បីបន្ថែមជាជួរពន្លឺ */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    Arrays link listtable
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ជួរនឹងត្រូវបានបន្ថែមដោយ JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // បញ្ជីនិស្សិត
+        const students = [
+            { id: 1, name: 'Chanlay', gender: 'M' },
+            { id: 2, name: 'Kunthea', gender: 'F' },
+            { id: 3, name: 'Eangheng', gender: 'M' },
+
+        ];
+
+        // ទាញយកធាតុប្រអប់បញ្ជីតារាង
+        const tableBody = document.querySelector('#studentTable tbody');
+
+        // ការធ្វើរបៀបនិស្សិតនិងបង្កើតជួរ
+        students.forEach(student => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${student.id}</td>
+                <td>${student.name}</td>
+                <td>${student.gender}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
