@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ម៉ាសុីនគិតលេខ</title> <!-- កំណត់ចំណងជើងសម្រាប់ទំព័រ -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khmer+Moul:wght@400;700&display=swap"> <!-- បន្ថែមកូដនៃ Khmer Moul ផ្ទាល់ខ្លួន -->
+    <style>
+        /* ស្តាយសម្រាប់ទំព័រ */
+        body {
+            font-family: 'Khmer Moul', Arial, sans-serif; /* កំណត់អត្ថបទសម្រាប់ទំព័រ */
+            display: flex; /* បង្ហាញអត្ថបទក្នុងទីតាំងមួយ */
+            justify-content: center; /* កម្រិតតំរៀបកណ្ដាលខាងស្តាំនិងខាងឆ្វេង */
+            align-items: center; /* កម្រិតតំរៀបកណ្ដាលខាងលើនិងខាងក្រោម */
+            height: 100vh; /* កំណត់កម្ពស់ទំព័រ */
+            margin: 0; /* លុបចោលគន្លងជុំវិញទំព័រ */
+            background-color: #e0f7fa; /* កំណត់ពណ៌ផ្ទៃក្រោយទំព័រ */
+            transition: background-color 0.5s; /* បន្ថែមការប្រែប្រួលពណ៌ផ្ទៃក្រោយ */
+        }
+
+        /* ស្តាយសម្រាប់ប្រអប់ */
+        .container {
+            text-align: center; /* កំណត់ការរៀបចំអត្ថបទនៅកណ្ដាល */
+            background: #ffffff; /* កំណត់ពណ៌ផ្ទៃក្រោយសម្រាប់ប្រអប់ */
+            padding: 30px; /* កំណត់កម្រិតឲ្យមានជាតិព័ត្ឋស្រួល */
+            border-radius: 10px; /* កំណត់រាងជ្រុងមុំប្រអប់ */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* បន្ថែមស្រមោលសម្រាប់ប្រអប់ */
+            transition: box-shadow 0.3s, transform 0.3s; /* បន្ថែមការប្រែប្រួលស្រមោលនិងការបំលែង */
+        }
+
+        /* ផលប៉ះពាល់នៃការវាយស្លាប់សម្រាប់ប្រអប់ */
+        .container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* ស្រមោលជ្រាបធំលើការវាយស្លាប់ */
+            transform: translateY(-5px); /* បង្ហាញការលើកប្រអប់នៅពេលការវាយស្លាប់ */
+        }
+
+        /* ស្តាយសម្រាប់វត្ថុបញ្ចូល និងជម្រើស */
+        input, select, button {
+            padding: 12px; /* កំណត់ជាតិព័ត្ឋសម្រាប់វត្ថុបញ្ចូល */
+            margin: 8px; /* បន្ថែមទំហំគន្លងជុំវិញវត្ថុ */
+            border: 2px solid #00796b; /* បន្ថែមស៊ីដុមសម្រាប់វត្ថុ */
+            border-radius: 5px; /* កំណត់រាងជ្រុងមុំសម្រាប់វត្ថុ */
+            font-size: 1em; /* កំណត់ទំហំអត្ថបទសម្រាប់វត្ថុ */
+            transition: border-color 0.3s, box-shadow 0.3s; /* បន្ថែមការប្រែប្រួលពណ៌ស៊ីដុមនិងស្រមោល */
+        }
+
+        /* ផលប៉ះពាល់នៃការប្រើប្រាស់សម្រាប់វត្ថុបញ្ចូល និងជម្រើស */
+        input:focus, select:focus {
+            border-color: #004d40; /* ពណ៌ស៊ីដុមដ៏ស្លាប់នៅពេលមានការប្រើប្រាស់ */
+            box-shadow: 0 0 8px rgba(0, 77, 64, 0.5); /* ស្រមោលសម្រាប់វត្ថុពេលមានការប្រើប្រាស់ */
+            outline: none; /* លុបការរចនាមានស៊ីដុម */
+        }
+
+        /* ស្តាយសម្រាប់ប៊ូតុង */
+        button {
+            background-color: #00796b; /* ពណ៌ផ្ទៃក្រោយសម្រាប់ប៊ូតុង */
+            color: #ffffff; /* ពណ៌អត្ថបទសម្រាប់ប៊ូតុង */
+            cursor: pointer; /* ប្ដូររូបភាពកូនសៀវភៅនៃប៊ូតុង */
+            border: none; /* លុបស៊ីដុមចេញពីប៊ូតុង */
+            transition: background-color 0.3s, transform 0.2s; /* បន្ថែមការប្រែប្រួលពណ៌និងការបំលែងនៃប៊ូតុង */
+        }
+
+        /* ផលប៉ះពាល់នៃការវាយស្លាប់សម្រាប់ប៊ូតុង */
+        button:hover {
+            background-color: #004d40; /* ពណ៌ផ្ទៃក្រោយដ៏ស្លាប់នៅពេលកើតឡើងនៃករណីធ្លាក់ */
+        }
+
+        /* ផលប៉ះពាល់នៃការចុចសម្រាប់ប៊ូតុង */
+        button:active {
+            transform: scale(0.98); /* បន្ថែមសមាភាពសម្រាប់ប៊ូតុងនៅពេលចុច */
+        }
+
+        /* ស្តាយសម្រាប់បង្ហាញលទ្ធផល */
+        .result {
+            margin-top: 20px; /* បន្ថែមទំហំគន្លងនៅលើលទ្ធផល */
+            font-size: 1.5em; /* កំណត់ទំហំអត្ថបទសម្រាប់លទ្ធផល */
+            color: #004d40; /* ពណ៌អត្ថបទសម្រាប់លទ្ធផល */
+            opacity: 0; /* ដាក់ប្រភេទទាំងមូលតំណាងសម្រាប់មុខងារ */
+            transition: opacity 0.5s, transform 0.5s; /* បន្ថែមការប្រែប្រួលភាពច្បាស់និងការបំលែង */
+            transform: translateY(-20px); /* កំណត់តម្លៃការបំលែងលើអត្ថបទ */
+        }
+
+        /* ផលប៉ះពាល់នៃការបង្ហាញលទ្ធផល */
+        .result.show {
+            opacity: 1; /* បង្ហាញអត្ថបទ */
+            transform: translateY(0); /* ធ្វើអត្ថបទមកទីតាំងដើម */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ម៉ាសុីនគិតលេខ</h1> <!-- ចំណងជើងសម្រាប់ម៉ាស៊ីនគិតលេខ -->
+        <input type="number" id="number1" placeholder="បញ្ចូលលេខទី១"> <!-- វត្ថុបញ្ចូលលេខទី១ --> <br>
+        <input type="number" id="number2" placeholder="បញ្ចូលលេខទី២"> <!-- វត្ថុបញ្ចូលលេខទី២ --> <br>
+        
+        <select id="operation"> <!-- បញ្ជីជម្រើសសម្រាប់ប្រតិបត្តិការ -->
+            <option value="+">+</option> <!-- ជម្រើសបូក -->
+            <option value="-">-</option> <!-- ជម្រើសដក -->
+            <option value="*">*</option> <!-- ជម្រើសគុណ -->
+            <option value="/">/</option> <!-- ជម្រើសចែក -->
+        </select>
+        
+        <button onclick="calculate()">គណនា</button> <!-- ប៊ូតុងសម្រាប់ការគណនាផល -->
+        
+        <div id="result" class="result"></div> <!-- ប្រអប់សម្រាប់បង្ហាញលទ្ធផល -->
+    </div>
+
+    <script>
+        function calculate() {
+            // ទាញយកតម្លៃពីវត្ថុបញ្ចូល
+            const num1 = parseFloat(document.getElementById('number1').value);
+            const num2 = parseFloat(document.getElementById('number2').value);
+            const operation = document.getElementById('operation').value;
+            
+            let result;
+
+            // ប្រតិបត្តិការ​គណនា​តាមការជ្រើសរើស
+            switch(operation) {
+                case '+': // ប្រតិបត្តិការ​បូក
+                    result = num1 + num2;
+                    break;
+                case '-': // ប្រតិបត្តិការ​ដក
+                    result = num1 - num2;
+                    break;
+                case '*': // ប្រតិបត្តិការ​គុណ
+                    result = num1 * num2;
+                    break;
+                case '/': // ប្រតិបត្តិការ​ចែក
+                    if (num2 !== 0) { // ពិនិត្យសម្រាប់ការចែកដោយសូន្យ
+                        result = num1 / num2;
+                    } else {
+                        result = 'កំហុស: ចែកដោយសូន្យ'; // សារប្រាប់កំហុស
+                    }
+                    break;
+                default: // ប្រតិបត្តិការ​ដែលមិនត្រឹមត្រូវ
+                    result = 'ប្រតិបត្តិការ​មិនត្រឹមត្រូវ'; // សារប្រាប់កំហុស
+            }
+
+            // បង្ហាញលទ្ធផលជាមួយនឹងការបង្ហាញ
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'ចម្លើយ: ' + result;
+            resultDiv.classList.add('show'); // បន្ថែមថ្នាក់សម្រាប់បង្ហាញលទ្ធផល
+        }
+    </script>
+</body>
+</html>
