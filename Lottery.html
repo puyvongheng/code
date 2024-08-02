@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- កំណត់ការប្រើប្រាស់អក្សរកូដជា UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- កំណត់ការមើលតាមទូរស័ព្ទ និងឧបករណ៍ផ្សេងទៀត -->
+    <title>Lottery Program</title> <!-- ចំណងជើងទំព័រ -->
+    <!-- បន្ថែមស្ទីលខាងក្រៅសម្រាប់ការបង្ហាញអក្សរពី Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khmer+Moul:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Khmer Moul', Arial, sans-serif; /* កំណត់អក្សរបង្ហាញជាអក្សរ Khmer Moul */
+            display: flex; /* បង្ហាញខាងក្នុងជារបៀបផ្តល់កូឡាបសម្រាប់គ្រប់ទំហំអេក្រង់ */
+            justify-content: center; /* កំណត់ការតំរូវការចំរូងពណ៌តែម្ដងកណ្តាល */
+            align-items: center; /* កំណត់ការតំរូវការកណ្តាលជាមួយការផ្សាយក្នុងខ្នង */
+            height: 100vh; /* កំណត់កម្ពស់របស់ស្លាបព្រិលអេក្រង់ជាយើងសង្ហារមានទំហំ 100% */
+            margin: 0; /* ធ្វើឲ្យបញ្ចប់ការស្នាក់នៅផ្នែកចំហៀងកម្រិតទទឹងបង្ហាញ */
+            background-color: #f0f0f0; /* កំណត់ពណ៌ផ្ទៃក្រោយជាពណ៌ស្លាបព្រិល */
+        }
+        .container {
+            text-align: center; /* កំណត់ការចំរូងបែបសំបូរបែបកណ្តាល */
+            background: #fff; /* កំណត់ពណ៌ផ្ទៃក្នុងជាពណ៌ស */
+            padding: 20px; /* បន្ថែមខ្នងក្នុះសម្រាប់ធ្វើការបង្ហាញ */
+            border-radius: 8px; /* កំណត់កម្រិតខ្នងជាប្រវត្តិសាស្ត្រប្រហែល 8px */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* បន្ថែមស្លាបព្រិលកម្រិតបរិមាណ 10px */
+        }
+        input {
+            padding: 10px; /* បន្ថែមខ្នងក្នុងសម្រាប់ការបញ្ចូល */
+            margin-right: 10px; /* បន្ថែមខ្នងស្ដាំ 10px */
+            border: 1px solid #ddd; /* កំណត់របារទម្រង់ជាបណ្ដោយ 1px និងពណ៌ស្រទាប់ */
+            border-radius: 4px; /* កំណត់កម្រិតខ្នងជាប្រវត្តិសាស្ត្រប្រហែល 4px */
+            transition: transform 0.3s, box-shadow 0.3s; /* បន្ថែមអភិវឌ្ឍន៍ការកែប្រែបំលែង និងស្លាបព្រិល */
+        }
+        input:focus {
+            transform: scale(1.05); /* បំលែងទ្រង់ទ្រាយនៅពេលព្រមានបញ្ចូល */
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* បន្ថែមស្លាបព្រិលពណ៌ក្រូមធ្វើការស្គាល់កម្រិត */
+        }
+        button {
+            padding: 10px 20px; /* បន្ថែមខ្នងក្នុងសម្រាប់ប៊ូតុង */
+            border: none; /* លុបការរបារទម្រង់ */
+            border-radius: 4px; /* កំណត់កម្រិតខ្នងជាប្រវត្តិសាស្ត្រប្រហែល 4px */
+            background-color: #007bff; /* កំណត់ពណ៌ផ្ទៃក្នុងប៊ូតុងជាពណ៌ខៀវ */
+            color: #fff; /* កំណត់ពណ៌អត្ថបទប៊ូតុងជាពណ៌ស */
+            cursor: pointer; /* បង្កើតសញ្ញារទំនាក់ទំនងរបស់ខ្លួន */
+            transition: background-color 0.3s, transform 0.2s; /* បន្ថែមអភិវឌ្ឍន៍ការប្រែប្រួលពណ៌ និងទ្រង់ទ្រាយ */
+        }
+        button:hover {
+            background-color: #0056b3; /* កំណត់ពណ៌ប៊ូតុងពេលជម្រើសជាពណ៌ខៀវងងឹត */
+        }
+        button:active {
+            transform: scale(0.98); /* បំលែងទ្រង់ទ្រាយនៅពេលចុច */
+        }
+        .result, .verification {
+            margin-top: 20px; /* បន្ថែមខ្នងនៅខាងលើ 20px */
+            font-size: 1.2em; /* កំណត់ទំហំអក្សរជាទំហំ 1.2em */
+            opacity: 0; /* កំណត់ភាពច្បាស់ជាសូន្យសម្រាប់ប្រើប្រាស់កម្មវិធី */
+            animation: fadeIn 1s forwards; /* បន្ថែមអនុវត្តន៍ការចូលមកក្នុង 1 វិនាទី */
+        }
+        .success {
+            color: #28a745; /* កំណត់ពណ៌សម្រាប់ជោគជ័យ */
+            animation: fadeInSuccess 1s forwards; /* បន្ថែមអនុវត្តន៍ជោគជ័យ */
+        }
+        .failure {
+            color: #dc3545; /* កំណត់ពណ៌សម្រាប់បរាជ័យ */
+            animation: fadeInFailure 1s forwards; /* បន្ថែមអនុវត្តន៍បរាជ័យ */
+        }
+        .verification.success {
+            color: #28a745; /* កំណត់ពណ៌សម្រាប់ជោគជ័យនៅលើបង្ហាញសញ្ញា */
+            animation: fadeInSuccess 1s forwards; /* បន្ថែមអនុវត្តន៍ជោគជ័យ */
+        }
+        .verification.failure {
+            color: #dc3545; /* កំណត់ពណ៌សម្រាប់បរាជ័យនៅលើបង្ហាញសញ្ញា */
+            animation: fadeInFailure 1s forwards; /* បន្ថែមអនុវត្តន៍បរាជ័យ */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; } /* កំណត់ភាពច្បាស់តាំងពីសូន្យ */
+            to { opacity: 1; } /* ដល់ភាពច្បាស់ជាអនាគត */
+        }
+        @keyframes fadeInSuccess {
+            from { opacity: 0; transform: translateY(-10px); } /* កំណត់ភាពច្បាស់ និងការបំលែងនៅពេលជោគជ័យ */
+            to { opacity: 1; transform: translateY(0); } /* ដល់ភាពច្បាស់ និងការបំលែងជាអនាគត */
+        }
+        @keyframes fadeInFailure {
+            from { opacity: 0; transform: translateY(-10px); } /* កំណត់ភាពច្បាស់ និងការបំលែងនៅពេលបរាជ័យ */
+            to { opacity: 1; transform: translateY(0); } /* ដល់ភាពច្បាស់ និងការបំលែងជាអនាគត */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ល្បែងប្រជាប្រជាព្រៃ</h1> <!-- កំណត់ចំណងជើងទំព័រ -->
+        <label for="lotteryNumber">បញ្ចូលលេខឆ្នោត</label> <!-- កំណត់បញ្ជាក់ចំពោះការបញ្ចូលលេខ -->
+        <input type="number" id="lotteryNumber" placeholder="1-10" min="1" max="10"> <!-- បញ្ចូលលេខឆ្នោត -->
+        
+        <button onclick="checkLottery()">ចាក់ឆ្នោត</button> <!-- ប៊ូតុងសម្រាប់ចាក់ឆ្នោត -->
+        <h1 style=" background-color: #007bff; border-radius: 5px; color: #ddd;">លិតផល</h1> <!-- ចំណងជើងសម្រាប់បង្ហាញលទ្ធផល -->
+        <div id="verification" class="verification"></div> <!-- តំបន់សម្រាប់បង្ហាញសញ្ញាសម្រាប់ជោគជ័យឬបរាជ័យ -->
+        <div id="result" class="result"></div> <!-- តំបន់សម្រាប់បង្ហាញលទ្ធផល -->
+    </div>
+
+    <script>
+        function checkLottery() {
+            // ទទួលបញ្ចូលអ្នកប្រើ
+            const userNumber = parseInt(document.getElementById('lotteryNumber').value, 10);
+            
+            // បង្កើតលេខឆ្នោតចៃដន្យរវាង 1 និង 10
+            const winningNumber = Math.floor(Math.random() * 10) + 1;
+
+            // កំណត់លទ្ធផល
+            const resultElement = document.getElementById('result');
+            const verificationElement = document.getElementById('verification');
+            
+            if (userNumber === winningNumber) {
+                resultElement.textContent = 'អបអរសារ! ឈ្នះ!'; // បង្ហាញជោគជ័យ
+                resultElement.className = 'result success'; // កំណត់ឈ្មោះថ្នាក់សម្រាប់ជោគជ័យ
+                verificationElement.textContent = '🎉🎉🎉🎉🎉🎉'; // បង្ហាញសញ្ញាជោគជ័យ
+                verificationElement.className = 'verification success'; // កំណត់ឈ្មោះថ្នាក់សម្រាប់សញ្ញាជោគជ័យ
+            } else {
+                resultElement.textContent = 'ព្យាយាមម្តងទៀត! លេខដែលចេញគី ' + winningNumber; // បង្ហាញขបរាជ័យ
+                resultElement.className = 'result failure'; // កំណត់ឈ្មោះថ្នាក់សម្រាប់បរាជ័យ
+                verificationElement.textContent = '😂😂😂🥲😭'; // បង្ហាញសញ្ញាបរាជ័យ
+                verificationElement.className = 'verification failure'; // កំណត់ឈ្មោះថ្នាក់សម្រាប់សញ្ញាបរាជ័យ
+            }
+        }
+    </script>
+</body>
+</html>
